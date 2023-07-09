@@ -10,17 +10,26 @@ const Feed = () => {
         >
           <h4 className="text-xs font-semibold">@{item.username}</h4>
 
-          {item.images.map(
-            (image, i) =>
-              item.images.length === 2 && (
-                <div className="flex flex-row w-full" key={i}>
-                  <img
-                    src={image}
-                    alt={item.username}
-                    className="w-1/2 h-full"
-                  />
-                </div>
-              )
+          {item.images.length === 2 && (
+            <div className="flex">
+              {item.images.map((image, i) => (
+                <img src={image} key={i} className="w-1/2 object-fill" />
+              ))}
+            </div>
+          )}
+          {item.images.length === 1 && (
+            <div className="flex">
+              {item.images.map((image, i) => (
+                <img src={image} key={i} className="w-full object-fill" />
+              ))}
+            </div>
+          )}
+          {item.images.length > 2 && (
+            <div className="grid grid-cols-2">
+              {item.images.slice(0, 3).map((image, i) => (
+                <img src={image} key={i} className="  object-fill" />
+              ))}
+            </div>
           )}
         </section>
       ))}
