@@ -27,7 +27,7 @@ const Feed = () => {
           {item.images.length > 2 && (
             <div className="grid grid-cols-2">
               {item.images.slice(0, 3).map((image, i) => (
-                <img src={image} key={i} className="  object-fill" />
+                <img src={image} key={i} className="object-fill" />
               ))}
             </div>
           )}
@@ -36,5 +36,4 @@ const Feed = () => {
     </>
   );
 };
-
 export default Feed;
