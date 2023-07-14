@@ -25,10 +25,22 @@ const Feed = () => {
             </div>
           )}
           {item.images.length > 2 && (
-            <div className="grid grid-cols-2">
-              {item.images.slice(0, 3).map((image, i) => (
-                <img src={image} key={i} className="object-fill" />
-              ))}
+            <div className="flex flex-row gap-0.5">
+              <img
+                src={item.images[0]}
+                className="h-full w-1/2 rounded-sm object-center object-cover"
+                alt="girl"
+              />
+              <div className="flex flex-col h-full gap-0.5">
+                <img
+                  src={item.images[1]}
+                  className="h-1/2 w-full object-center"
+                />
+                <img
+                  src={item.images[2]}
+                  className="h-1/2 w-full object-center"
+                />
+              </div>
             </div>
           )}
         </section>
