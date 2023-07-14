@@ -17,4 +17,8 @@ export const dummy = [
     username: "asad",
     images: [john, kid1],
   },
+  {
+    username: "umair_rajput",
+    images: [john, kid1, boy1, headphone],
+  },
 ];
