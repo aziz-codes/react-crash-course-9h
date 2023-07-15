@@ -5,7 +5,7 @@ const Feed = () => {
     <>
       {dummy.map((item, index) => (
         <section
-          className="w-96 max-w-sm border flex flex-col p-1 rounded-sm"
+          className="w-96 max-w-sm border flex flex-col   rounded-sm"
           key={index}
         >
           <h4 className="text-xs font-semibold">@{item.username}</h4>
