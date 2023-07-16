@@ -5,7 +5,7 @@ const Feed = () => {
     <>
       {dummy.map((item, index) => (
         <section
-          className="w-96 max-w-sm border-gray-100 border flex flex-col   rounded-sm"
+          className="w-96 max-w-sm h-auto  border-gray-100 border flex flex-col   rounded-sm"
           key={index}
         >
           <div className="flex w-full px-2 justify-between my-4 items-center">
@@ -24,9 +24,13 @@ const Feed = () => {
           </div>
 
           {item.images.length === 2 && (
-            <div className="flex">
+            <div className="flex h-96">
               {item.images.map((image, i) => (
-                <img src={image} key={i} className="w-1/2 object-fill" />
+                <img
+                  src={image}
+                  key={i}
+                  className="w-1/2 object-center h-auto"
+                />
               ))}
             </div>
           )}
