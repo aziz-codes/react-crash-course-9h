@@ -5,10 +5,23 @@ const Feed = () => {
     <>
       {dummy.map((item, index) => (
         <section
-          className="w-96 max-w-sm border flex flex-col   rounded-sm"
+          className="w-96 max-w-sm border-gray-100 border flex flex-col   rounded-sm"
           key={index}
         >
-          <h4 className="text-xs font-semibold">@{item.username}</h4>
+          <div className="flex w-full px-2 justify-between my-4 items-center">
+            <div className="flex gap-1 items-center">
+              <img
+                src={item.images[0]}
+                className="h-10 w-10 object-center rounded-full p-1 border"
+              />
+              <label className="text-sm ">{item.username}</label>
+            </div>
+            <div className="flex gap-0.5">
+              <div className="h-1 w-1 rounded-full bg-black cursor-pointer"></div>
+              <div className="h-1 w-1 rounded-full bg-black cursor-pointer"></div>
+              <div className="h-1 w-1 rounded-full bg-black cursor-pointer"></div>
+            </div>
+          </div>
 
           {item.images.length === 2 && (
             <div className="flex">
