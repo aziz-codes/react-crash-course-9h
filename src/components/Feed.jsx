@@ -4,6 +4,7 @@ const Feed = () => {
   return (
     <>
       {dummy.map((item, index) => (
+        // main card code start here.
         <section
           className="w-96 max-w-sm h-auto  border-gray-100 border flex flex-col   rounded-sm"
           key={index}
