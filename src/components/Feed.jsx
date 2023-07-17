@@ -98,3 +98,5 @@ const Feed = () => {
   );
 };
 export default Feed;
+
+// Image and cards issue
