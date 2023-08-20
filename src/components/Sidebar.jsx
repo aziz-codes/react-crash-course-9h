@@ -5,7 +5,7 @@ import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 const Sidebar = () => {
   const [data, setData] = useState(links);
 
-  const handleOpen = (index, label) => {
+  const handleOpen = (index) => {
     let newData = (links[index].expanded = true);
     setData([...data], newData);
   };
@@ -14,7 +14,7 @@ const Sidebar = () => {
     setData([...data], newData);
   };
   return (
-    <div className="w-56 border flex flex-col py-6 px-2 h-screen gap-4">
+    <div className="w-56 border flex flex-col py-6 px-2 h-screen gap-4 overflow-y-auto overflow-x-hidden">
       <h4 className="text-center">Sidebar</h4>
       {/* menus */}
       <div className="flex flex-col gap-4 w-full z-8">
@@ -41,7 +41,7 @@ const Sidebar = () => {
                   <ChevronRightIcon
                     className="h-5 w-5 cursor-pointer"
                     onClick={() => {
-                      handleOpen(index, item.label);
+                      handleOpen(index);
                     }}
                   />
                 ))}
