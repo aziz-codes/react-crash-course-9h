@@ -59,4 +59,23 @@ export const links = [
       },
     ],
   },
+  {
+    label: "Reactions",
+    icon: <HeartIcon />,
+    expanded: false,
+    submenu: [
+      {
+        title: "Videos",
+        icon: <VideoCameraIcon />,
+      },
+      {
+        title: "Posts",
+        icon: <DocumentIcon />,
+      },
+      {
+        title: "Images",
+        icon: <CameraIcon />,
+      },
+    ],
+  },
 ];
