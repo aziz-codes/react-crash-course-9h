@@ -1,7 +1,6 @@
-import Sidebar from "./components/Sidebar";
-
+import ApiMethod from "./components/ApiMethod";
 const App = () => {
-  return <Sidebar />;
+  return <ApiMethod />;
 };
 
 export default App;
