@@ -3,10 +3,12 @@ import { useEffect } from "react";
 const ApiMethod = () => {
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch("http://localhost/test.php");
+      const res = await fetch("http://localhost/vote/src/vt.php", {
+        method: "POST",
+      });
       const result = await res.json();
-      const { data } = result;
-      console.log(data);
+      //   const { data } = result;
+      console.log(result);
     };
     getData();
   }, []);
