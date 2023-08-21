@@ -1,5 +1,3 @@
-import React from "react";
-
 const Keyboard = () => {
   const firstRow = [];
   for (let i = 0; i <= 12; i++) {
