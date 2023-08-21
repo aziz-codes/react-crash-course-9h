@@ -1,7 +1,8 @@
 import Keyboard from "./components/Keyboard";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
-  return <Keyboard />;
+  return <Sidebar />;
 };
 
 export default App;
