@@ -6,8 +6,11 @@ const Sidebar = () => {
   const [data, setData] = useState(links);
 
   const handleOpen = (index) => {
-    let newData = (links[index].expanded = true);
-    setData([...data], newData);
+    const updatedItem = [...data];
+    updatedItem[index].expanded = !updatedItem[index].expanded;
+    setData(updatedItem);
+    // let newData = (links[index].expanded = true);
+    // setData([...data], newData);
   };
   const handleHide = (index) => {
     let newData = (links[index].expanded = false);
