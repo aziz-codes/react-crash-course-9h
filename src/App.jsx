@@ -1,6 +1,7 @@
-import ApiMethod from "./components/ApiMethod";
+import Keyboard from "./components/Keyboard";
+
 const App = () => {
-  return <ApiMethod />;
+  return <Keyboard />;
 };
 
 export default App;
