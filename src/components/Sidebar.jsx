@@ -1,6 +1,7 @@
 import { links } from "../dummy";
 import { useState } from "react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Sidebar = () => {
   const [data, setData] = useState(links);
@@ -9,8 +10,6 @@ const Sidebar = () => {
     const updatedItem = [...data];
     updatedItem[index].expanded = !updatedItem[index].expanded;
     setData(updatedItem);
-    // let newData = (links[index].expanded = true);
-    // setData([...data], newData);
   };
   const handleHide = (index) => {
     let newData = (links[index].expanded = false);
@@ -49,20 +48,27 @@ const Sidebar = () => {
                   />
                 ))}
             </div>
-
-            {item.expanded ? (
-              <div className="  bg-gray-200  h-auto w-full flex flex-col gap-3   shadow-md  ">
-                {item.submenu.map((sub, i) => (
-                  <div
-                    key={i}
-                    className="flex flex-row gap-3 px-2 ml-4 w-full h-9 items-center shadow-sm  "
-                  >
-                    <span className="h-5 w-5">{sub.icon}</span>
-                    <h4 className="text-sm">{sub.title}</h4>
-                  </div>
-                ))}
-              </div>
-            ) : null}
+            <AnimatePresence>
+              {item.expanded ? (
+                <motion.div
+                  className="bg-gray-200  h-auto w-full flex flex-col gap-3   shadow-md"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {item.submenu.map((sub, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-row gap-3 px-2 ml-4 w-full h-9 items-center shadow-sm  "
+                    >
+                      <span className="h-5 w-5">{sub.icon}</span>
+                      <h4 className="text-sm">{sub.title}</h4>
+                    </div>
+                  ))}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </div>
           // wrapper
         ))}
