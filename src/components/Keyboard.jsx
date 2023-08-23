@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 const Keyboard = () => {
   const firstRow = [];
   for (let i = 0; i <= 12; i++) {
@@ -37,29 +39,64 @@ const Keyboard = () => {
     "Enter",
   ];
   const alphaThree = [
-    "shift",
+    "LShift",
+
     "z",
+
     "x",
+
     "c",
+
     "v",
+
     "b",
+
     "n",
+
     "m",
+
     ",",
+
     ".",
+
     "/",
-    "shift",
+
+    "RShift",
   ];
 
   const lastRow = ["ctrl", "fn", "alt", "space", "alt2", "fn2", "ctrl2"];
-  window.addEventListener("keyup", (e) => {
-    e.preventDefault();
-    if (alphaThree.includes(e.key)) {
-      console.log("key found");
-    } else {
-      console.log("key not found");
-    }
-  });
+  const allKeys = [
+    ...firstRow,
+    ...alphaOne,
+    ...alphaTwo,
+    ...alphaThree,
+    ...lastRow,
+  ];
+
+  const [combinedKeys, setCombinedKeys] = useState(
+    allKeys.map((key) => ({
+      key,
+      isPressed: false,
+    }))
+  );
+  useEffect(() => {
+    window.addEventListener("keyup", (e) => {
+      e.preventDefault();
+      let index = combinedKeys.findIndex((i) => i.key === e.key);
+      const updatedKeys = [...combinedKeys];
+      updatedKeys[index].isPressed = true;
+      setCombinedKeys(updatedKeys);
+    });
+    return () => window.removeEventListener("keyup", () => {});
+  }, []);
+
+  const secondLastRow = combinedKeys.slice(39, 51);
+  const lastRowItems = combinedKeys.slice(51, 58);
+  const thirdRow = combinedKeys.slice(26, 39);
+  console.log(combinedKeys);
+  const index = combinedKeys.findIndex((item) => item.key === "LShift");
+  const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
+  //  26-39
   return (
     <section className="w-scree h-screen px-2 py-4 flex justify-center ">
       <div className="w-auto max-w-5xl h-96 border-red-400 border px-3 py-3 rounded-sm bg-gray-300 relative flex flex-col gap-1.5">
@@ -150,20 +187,20 @@ const Keyboard = () => {
         {/* start of 4th row */}
 
         <div className="flex gap-1.5">
-          {alphaTwo.map((btn, i) =>
-            i === 0 || i === alphaTwo.length - 1 ? (
+          {thirdRow.map((btn, i) =>
+            i === 0 || i === thirdRow.length - 1 ? (
               <button
                 className="bg-white shadow-md h-9 w-[72px] text-center font-semibold rounded-md"
                 key={i}
               >
-                {btn}
+                {btn.key}
               </button>
             ) : (
               <button
                 className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
                 key={i}
               >
-                {btn}
+                {btn.key}
               </button>
             )
           )}
@@ -172,20 +209,24 @@ const Keyboard = () => {
         {/* end of 4th row */}
         {/* start of 5th row */}
         <div className="flex gap-1.5">
-          {alphaThree.map((btn, i) =>
-            i === 0 || i === alphaThree.length - 1 ? (
+          {secondLastRow.map((btn, i) =>
+            i === 0 || i === secondLastRow.length - 1 ? (
               <button
                 className="bg-white shadow-md h-9 w-[93px] text-center font-semibold rounded-md"
                 key={i}
               >
-                {btn}
+                {btn.key}
               </button>
             ) : (
               <button
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
+                className={`${
+                  btn.isPressed
+                    ? "bg-red shadow-md h-9 w-9 rounded-md text-center font-semibold bg-red-500"
+                    : "bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
+                }`}
                 key={i}
               >
-                {btn}
+                {btn.key}
               </button>
             )
           )}
@@ -193,7 +234,7 @@ const Keyboard = () => {
         {/* end of 5th row */}
         {/* start of last row */}
         <div className="flex gap-1.5">
-          {lastRow.map((btn, i) =>
+          {lastRowItems.map((btn, i) =>
             i === 3 ? (
               <button
                 className="bg-white shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
@@ -203,10 +244,10 @@ const Keyboard = () => {
               </button>
             ) : (
               <button
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
+                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold text-black"
                 key={i}
               >
-                {btn}
+                {btn.key}
               </button>
             )
           )}
