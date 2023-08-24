@@ -97,6 +97,12 @@ const Keyboard = () => {
   const index = combinedKeys.findIndex((item) => item.key === "LShift");
   const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
   //  26-39
+
+  // pressed and unpressed Keys classes
+  const pressedKey =
+    "bg-red shadow-md h-9 w-9 rounded-md text-center font-semibold";
+  const normalKey =
+    "bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold";
   return (
     <section className="w-scree h-screen px-2 py-4 flex justify-center ">
       <div className="w-auto max-w-5xl h-96 border-red-400 border px-3 py-3 rounded-sm bg-gray-300 relative flex flex-col gap-1.5">
@@ -136,23 +142,14 @@ const Keyboard = () => {
                 {btn}
               </button>
             ) : (
-              <button
-                key={i}
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
-              >
+              <button key={i} className={normalKey}>
                 {btn}
               </button>
             )
           )}
-          <button className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold">
-            0
-          </button>
-          <button className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold">
-            -
-          </button>
-          <button className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold">
-            =
-          </button>
+          <button className={normalKey}>0</button>
+          <button className={normalKey}>-</button>
+          <button className={normalKey}>=</button>
           <button className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold">
             Backspace
           </button>
@@ -164,24 +161,16 @@ const Keyboard = () => {
         <div className="flex w-full gap-1.5">
           {alphaOne.map((btn, i) =>
             i === 0 ? (
-              <button
-                key={i}
-                className="bg-white shadow-md h-9 w-16 text-center font-semibold rounded-md"
-              >
+              <button key={i} className={`w-[4.2rem] ${normalKey}`}>
                 {btn}
               </button>
             ) : (
-              <button
-                key={i}
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
-              >
+              <button key={i} className={normalKey}>
                 {btn}
               </button>
             )
           )}
-          <button className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold">
-            \
-          </button>
+          <button className={normalKey}>\</button>
         </div>
         {/* end of third row */}
         {/* start of 4th row */}
@@ -196,10 +185,7 @@ const Keyboard = () => {
                 {btn.key}
               </button>
             ) : (
-              <button
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
-                key={i}
-              >
+              <button className={normalKey} key={i}>
                 {btn.key}
               </button>
             )
@@ -212,18 +198,16 @@ const Keyboard = () => {
           {secondLastRow.map((btn, i) =>
             i === 0 || i === secondLastRow.length - 1 ? (
               <button
-                className="bg-white shadow-md h-9 w-[93px] text-center font-semibold rounded-md"
+                className={
+                  btn.isPressed ? pressedKey : `w-[5.8rem] ${normalKey}`
+                }
                 key={i}
               >
                 {btn.key}
               </button>
             ) : (
               <button
-                className={`${
-                  btn.isPressed
-                    ? "bg-red shadow-md h-9 w-9 rounded-md text-center font-semibold bg-red-500"
-                    : "bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold"
-                }`}
+                className={`${btn.isPressed ? pressedKey : normalKey}`}
                 key={i}
               >
                 {btn.key}
@@ -244,7 +228,7 @@ const Keyboard = () => {
               </button>
             ) : (
               <button
-                className="bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold text-black"
+                className={btn.isPressed ? pressedKey : normalKey}
                 key={i}
               >
                 {btn.key}
