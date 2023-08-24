@@ -65,24 +65,7 @@ const Keyboard = () => {
   ];
 
   const lastRow = ["ctrl", "fn", "alt", "space", "alt2", "fn2", "ctrl2"];
-  const sideKeys = [
-    {
-      key: "0",
-      isPressed: false,
-    },
-    {
-      key: "-",
-      isPressed: false,
-    },
-    {
-      key: "=",
-      isPressed: false,
-    },
-    {
-      key: "BackSpace",
-      isPressed: false,
-    },
-  ];
+  const sideKeys = [0, "-", "=", "Backspace"];
   const allKeys = [
     ...firstRow,
     ...alphaOne,
@@ -116,12 +99,14 @@ const Keyboard = () => {
   const tabBtnRow = combinedKeys.slice(13, 26);
   // 0-13
   const numsRow = combinedKeys.slice(1, 10);
-  const mixedKeys = [...numsRow, ...sideKeys];
+  const sideKeysSlice = combinedKeys.slice(58, 62);
+  const mixedKeys = [...numsRow, ...sideKeysSlice];
+  console.log(mixedKeys);
 
   console.log(combinedKeys);
   const index = combinedKeys.findIndex((item) => item.key === "LShift");
   const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
-  //  26-39
+  //  58-62
 
   // pressed and unpressed Keys classes
   const pressedKey =
@@ -172,7 +157,11 @@ const Keyboard = () => {
               </button>
             ) : i === mixedKeys.length - 1 ? (
               <button
-                className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold"
+                className={
+                  btn.isPressed
+                    ? "bg-red-500 shadow-md h-9 w-24 rounded-md text-center font-semibold"
+                    : "bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold"
+                }
                 key={i}
               >
                 {btn.key}
@@ -186,16 +175,6 @@ const Keyboard = () => {
               </button>
             )
           )}
-          {/* {sideKeys.map((btn, index) => (
-            <div className="flex">
-              <button className={normalKey}>{btn.key}</button>
-              <button className={normalKey}>{btn.key}</button>
-              <button className={normalKey}>{btn.key}</button>
-              <button className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold">
-                {btn.key}
-              </button>
-            </div>
-          ))} */}
         </div>
 
         {/* end of second row */}
