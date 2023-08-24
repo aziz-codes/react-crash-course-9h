@@ -9,7 +9,7 @@ const Keyboard = () => {
     console.log(e.target.innerText);
   };
   const alphaOne = [
-    "tab",
+    "Tab",
     "q",
     "w",
     "e",
@@ -24,7 +24,7 @@ const Keyboard = () => {
     "]",
   ];
   const alphaTwo = [
-    "caps lock",
+    "CapsLock",
     "a",
     "s",
     "d",
@@ -65,12 +65,31 @@ const Keyboard = () => {
   ];
 
   const lastRow = ["ctrl", "fn", "alt", "space", "alt2", "fn2", "ctrl2"];
+  const sideKeys = [
+    {
+      key: "0",
+      isPressed: false,
+    },
+    {
+      key: "-",
+      isPressed: false,
+    },
+    {
+      key: "=",
+      isPressed: false,
+    },
+    {
+      key: "BackSpace",
+      isPressed: false,
+    },
+  ];
   const allKeys = [
     ...firstRow,
     ...alphaOne,
     ...alphaTwo,
     ...alphaThree,
     ...lastRow,
+    ...sideKeys,
   ];
 
   const [combinedKeys, setCombinedKeys] = useState(
@@ -82,10 +101,11 @@ const Keyboard = () => {
   useEffect(() => {
     window.addEventListener("keyup", (e) => {
       e.preventDefault();
-      let index = combinedKeys.findIndex((i) => i.key === e.key);
+      let index = combinedKeys.findIndex((item) => item.key == e.key);
       const updatedKeys = [...combinedKeys];
       updatedKeys[index].isPressed = true;
       setCombinedKeys(updatedKeys);
+      console.log(e.key);
     });
     return () => window.removeEventListener("keyup", () => {});
   }, []);
@@ -93,6 +113,11 @@ const Keyboard = () => {
   const secondLastRow = combinedKeys.slice(39, 51);
   const lastRowItems = combinedKeys.slice(51, 58);
   const thirdRow = combinedKeys.slice(26, 39);
+  const tabBtnRow = combinedKeys.slice(13, 26);
+  // 0-13
+  const numsRow = combinedKeys.slice(1, 10);
+  const mixedKeys = [...numsRow, ...sideKeys];
+
   console.log(combinedKeys);
   const index = combinedKeys.findIndex((item) => item.key === "LShift");
   const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
@@ -100,7 +125,7 @@ const Keyboard = () => {
 
   // pressed and unpressed Keys classes
   const pressedKey =
-    "bg-red shadow-md h-9 w-9 rounded-md text-center font-semibold";
+    "bg-red-500 shadow-md h-9 w-9 rounded-md text-center font-semibold";
   const normalKey =
     "bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold";
   return (
@@ -133,40 +158,66 @@ const Keyboard = () => {
           <button className="bg-white shadow-md h-9 w-6 rounded-md text-center font-semibold">
             `
           </button>
-          {firstRow.slice(1, 10).map((btn, i) =>
+          {mixedKeys.map((btn, i) =>
             i === 0 ? (
               <button
                 key={i}
-                className="bg-white shadow-md h-9 w-5 rounded-md text-center font-semibold"
+                className={
+                  btn.isPressed
+                    ? "bg-red-500 shadow-md h-9 w-5 rounded-md text-center font-semibold"
+                    : "bg-white shadow-md h-9 w-5 rounded-md text-center font-semibold"
+                }
               >
-                {btn}
+                {btn.key}
+              </button>
+            ) : i === mixedKeys.length - 1 ? (
+              <button
+                className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold"
+                key={i}
+              >
+                {btn.key}
               </button>
             ) : (
-              <button key={i} className={normalKey}>
-                {btn}
+              <button
+                className={btn.isPressed ? pressedKey : normalKey}
+                key={i}
+              >
+                {btn.key}
               </button>
             )
           )}
-          <button className={normalKey}>0</button>
-          <button className={normalKey}>-</button>
-          <button className={normalKey}>=</button>
-          <button className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold">
-            Backspace
-          </button>
+          {/* {sideKeys.map((btn, index) => (
+            <div className="flex">
+              <button className={normalKey}>{btn.key}</button>
+              <button className={normalKey}>{btn.key}</button>
+              <button className={normalKey}>{btn.key}</button>
+              <button className="bg-white shadow-md h-9 w-24 rounded-md text-center font-semibold">
+                {btn.key}
+              </button>
+            </div>
+          ))} */}
         </div>
 
         {/* end of second row */}
 
         {/* start of third row */}
         <div className="flex w-full gap-1.5">
-          {alphaOne.map((btn, i) =>
+          {tabBtnRow.map((btn, i) =>
             i === 0 ? (
-              <button key={i} className={`w-[4.2rem] ${normalKey}`}>
-                {btn}
+              <button
+                key={i}
+                className={`w-[4.2rem] ${
+                  btn.isPressed ? pressedKey : normalKey
+                }`}
+              >
+                {btn.key}
               </button>
             ) : (
-              <button key={i} className={normalKey}>
-                {btn}
+              <button
+                key={i}
+                className={btn.isPressed ? pressedKey : normalKey}
+              >
+                {btn.key}
               </button>
             )
           )}
@@ -179,13 +230,23 @@ const Keyboard = () => {
           {thirdRow.map((btn, i) =>
             i === 0 || i === thirdRow.length - 1 ? (
               <button
-                className="bg-white shadow-md h-9 w-[72px] text-center font-semibold rounded-md"
+                className={
+                  btn.isPressed
+                    ? "bg-red-500 shadow-md h-9 w-[72px] text-center font-semibold rounded-md"
+                    : "bg-white shadow-md h-9 w-[72px] text-center font-semibold rounded-md"
+                }
                 key={i}
               >
                 {btn.key}
               </button>
             ) : (
-              <button className={normalKey} key={i}>
+              <button
+                className={btn.isPressed ? pressedKey : normalKey}
+                key={i}
+                onKeyUp={(e) => {
+                  console.log(e.key);
+                }}
+              >
                 {btn.key}
               </button>
             )
@@ -221,7 +282,11 @@ const Keyboard = () => {
           {lastRowItems.map((btn, i) =>
             i === 3 ? (
               <button
-                className="bg-white shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
+                className={
+                  btn.isPressed
+                    ? "bg-red shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
+                    : "bg-white shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
+                }
                 key={i}
               >
                 space
