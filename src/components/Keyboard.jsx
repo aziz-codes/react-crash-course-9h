@@ -267,9 +267,7 @@ const Keyboard = () => {
                     : "bg-white shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
                 }
                 key={i}
-              >
-                space
-              </button>
+              ></button>
             ) : (
               <button
                 className={btn.isPressed ? pressedKey : normalKey}
