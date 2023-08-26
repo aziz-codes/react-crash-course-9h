@@ -5,9 +5,7 @@ const Keyboard = () => {
   for (let i = 0; i <= 12; i++) {
     firstRow.push(i);
   }
-  const handleClick = (e) => {
-    console.log(e.target.innerText);
-  };
+
   const alphaOne = [
     "Tab",
     "q",
@@ -88,7 +86,6 @@ const Keyboard = () => {
       const updatedKeys = [...combinedKeys];
       updatedKeys[index].isPressed = true;
       setCombinedKeys(updatedKeys);
-      console.log(e.key);
     });
     return () => window.removeEventListener("keyup", () => {});
   }, []);
@@ -101,20 +98,19 @@ const Keyboard = () => {
   const numsRow = combinedKeys.slice(1, 10);
   const sideKeysSlice = combinedKeys.slice(58, 62);
   const mixedKeys = [...numsRow, ...sideKeysSlice];
-  console.log(mixedKeys);
 
-  console.log(combinedKeys);
   const index = combinedKeys.findIndex((item) => item.key === "LShift");
   const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
   //  58-62
-
+  console.log(combinedKeys);
   // pressed and unpressed Keys classes
   const pressedKey =
     "bg-red-500 shadow-md h-9 w-9 rounded-md text-center font-semibold";
   const normalKey =
     "bg-white shadow-md h-9 w-9 rounded-md text-center font-semibold";
   return (
-    <section className="w-scree h-screen px-2 py-4 flex justify-center ">
+    <section className="w-scree h-screen px-2 py-4 flex justify-center flex-col items-center gap-2">
+      <h4>Start pressing keys on your keyboard </h4>
       <div className="w-auto max-w-5xl h-96 border-red-400 border px-3 py-3 rounded-sm bg-gray-300 relative flex flex-col gap-1.5">
         {/* first row buttons */}
         <div className="flex w-full gap-2">
@@ -128,7 +124,6 @@ const Keyboard = () => {
                   i % 4 === 0 ? "ml-4" : "ml-[4.5px]"
                 }`}
                 key={i}
-                onClick={handleClick}
               >
                 f{btn}
               </button>
@@ -222,9 +217,9 @@ const Keyboard = () => {
               <button
                 className={btn.isPressed ? pressedKey : normalKey}
                 key={i}
-                onKeyUp={(e) => {
-                  console.log(e.key);
-                }}
+                // onKeyUp={(e) => {
+                //   console.log(e.key);
+                // }}
               >
                 {btn.key}
               </button>
@@ -263,7 +258,7 @@ const Keyboard = () => {
               <button
                 className={
                   btn.isPressed
-                    ? "bg-red shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
+                    ? "bg-red-500 shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
                     : "bg-white shadow-md h-9 w-[357px] rounded-md text-center font-semibold"
                 }
                 key={i}
