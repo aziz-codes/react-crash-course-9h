@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const Keyboard = () => {
   const firstRow = [];
+
   for (let i = 0; i <= 12; i++) {
     firstRow.push(i);
   }
@@ -79,16 +80,31 @@ const Keyboard = () => {
       isPressed: false,
     }))
   );
+
   useEffect(() => {
-    window.addEventListener("keyup", (e) => {
+    const onKeyPress = (e) => {
       e.preventDefault();
       let index = combinedKeys.findIndex((item) => item.key == e.key);
-      const updatedKeys = [...combinedKeys];
-      updatedKeys[index].isPressed = true;
-      setCombinedKeys(updatedKeys);
-    });
-    return () => window.removeEventListener("keyup", () => {});
+      if (index !== -1) {
+        const updatedKeys = [...combinedKeys];
+        updatedKeys[index].isPressed = true;
+        setCombinedKeys(updatedKeys);
+      } else return;
+    };
+    window.addEventListener("keypress", onKeyPress);
+
+    return () => window.removeEventListener("keypress", onKeyPress);
   }, []);
+
+  // window.addEventListener("keypress", (e) => {
+  //   e.preventDefault();
+  //   let index = combinedKeys.findIndex((item) => item.key == e.key);
+  //   if (index !== -1) {
+  //     const updatedKeys = [...combinedKeys];
+  //     updatedKeys[index].isPressed = true;
+  //     setCombinedKeys(updatedKeys);
+  //   } else return;
+  // });
 
   const secondLastRow = combinedKeys.slice(39, 51);
   const lastRowItems = combinedKeys.slice(51, 58);
@@ -98,11 +114,12 @@ const Keyboard = () => {
   const numsRow = combinedKeys.slice(1, 10);
   const sideKeysSlice = combinedKeys.slice(58, 62);
   const mixedKeys = [...numsRow, ...sideKeysSlice];
-
-  const index = combinedKeys.findIndex((item) => item.key === "LShift");
-  const rIndex = combinedKeys.findIndex((item) => item.key === "RShift");
+  useEffect(() => {
+    console.log("this will run once");
+  }, []);
+  console.log("this will run every time");
   //  58-62
-  console.log(combinedKeys);
+  // console.log(combinedKeys);
   // pressed and unpressed Keys classes
   const pressedKey =
     "bg-red-500 shadow-md h-9 w-9 rounded-md text-center font-semibold";
@@ -278,5 +295,4 @@ const Keyboard = () => {
     </section>
   );
 };
-
 export default Keyboard;
