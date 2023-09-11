@@ -1,6 +1,6 @@
-import Keyboard from "./components/Keyboard";
+import UseEffect from "./hooks/UseEffect";
 const App = () => {
-  return <Keyboard />;
+  return <UseEffect />;
 };
 
 export default App;
