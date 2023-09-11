@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const UseEffect = () => {
   useEffect(() => {
-    const handleBlur = () => {
+    const handleBlur = (e) => {
       document.title = "you can't open a new tab";
     };
     const handleFocus = () => {
