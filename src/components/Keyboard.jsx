@@ -96,16 +96,6 @@ const Keyboard = () => {
     return () => window.removeEventListener("keypress", onKeyPress);
   }, []);
 
-  // window.addEventListener("keypress", (e) => {
-  //   e.preventDefault();
-  //   let index = combinedKeys.findIndex((item) => item.key == e.key);
-  //   if (index !== -1) {
-  //     const updatedKeys = [...combinedKeys];
-  //     updatedKeys[index].isPressed = true;
-  //     setCombinedKeys(updatedKeys);
-  //   } else return;
-  // });
-
   const secondLastRow = combinedKeys.slice(39, 51);
   const lastRowItems = combinedKeys.slice(51, 58);
   const thirdRow = combinedKeys.slice(26, 39);
