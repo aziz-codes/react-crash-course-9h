@@ -21,7 +21,7 @@ const App = () => {
         Show Toast
       </button>
 
-      <Toast display={showToast} />
+      <Toast display={showToast} content="Some text goes here" />
     </div>
   );
 };
