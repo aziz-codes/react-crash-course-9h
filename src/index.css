@@ -31,3 +31,6 @@
     transform: translateX(4px);
   } */
 }
+#ball {
+  transition: 0.1s linear infinite;
+}
