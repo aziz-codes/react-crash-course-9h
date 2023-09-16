@@ -1,4 +1,5 @@
-import Forms from "./Methods/Forms";
+// import Forms from "./Methods/Forms";
+import MovingLine from "./layouts/MovingLine";
 // import Toast from "./layouts/Toast";
 // import { useEffect, useState } from "react";
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
 
     //   <Toast display={showToast} content="Some text goes here" />
     // </div>
-    <Forms />
+    <MovingLine />
   );
 };
 
