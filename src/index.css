@@ -13,3 +13,21 @@
 ::-webkit-scrollbar-track {
   height: 10px;
 } */
+
+.moving-div {
+  animation: move 3s linear infinite backwards;
+}
+@keyframes move {
+  0% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(320px);
+  }
+  100% {
+    transform: translateX(4px);
+  }
+  /* 100% {
+    transform: translateX(4px);
+  } */
+}
