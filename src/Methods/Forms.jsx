@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const Forms = () => {
   const emailRef = useRef(null);
@@ -13,6 +13,15 @@ const Forms = () => {
     console.log(data);
   };
   console.log(data);
+  useEffect(() => {
+    const requestApi = async () => {
+      const res = await fetch("http://localhost:5173/");
+      const data = await res.text();
+      console.log(data);
+    };
+
+    requestApi();
+  }, []);
   return (
     <div className="w-full h-screen relative flex justify-center items-center">
       <div className="h-auto py-4 max-w-sm w-96 rounded-md shadow-lg bg-white flex flex-col px-2 gap-4">
