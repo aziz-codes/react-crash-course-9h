@@ -21,15 +21,16 @@ const MovingLine = () => {
 
     return () => clearInterval(timer);
   }, []);
-  console.log(ball);
+  //   console.log(ballRef.current.position);
+  //   let b = document.getElementById("ball");
+  //   console.log(b.clientLeft);
+
   return (
     <section className="h-screen w-full flex justify-center items-center">
       <div className="relative w-96 h-64 border-2 border-t-0">
         <div className="h-2 w-8 bg-black absolute bottom-2 left-2 moving-div"></div>
         <div
-          className={`absolute h-7 w-7 rounded-full bg-red-500 translate-y-[${
-            ball.y + "px"
-          }] translate-x-[${ball.x + "px"}]`}
+          className={`absolute h-7 w-7 rounded-full bg-red-500 `}
           ref={ballRef}
           id="ball"
         ></div>
