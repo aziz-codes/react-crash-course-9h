@@ -1,5 +1,6 @@
 // import Forms from "./Methods/Forms";
 import MovingLine from "./layouts/MovingLine";
+// import Ball from "./components/Ball/Ball";
 // import Toast from "./layouts/Toast";
 // import { useEffect, useState } from "react";
 const App = () => {
