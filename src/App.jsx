@@ -1,5 +1,6 @@
 // import Forms from "./Methods/Forms";
-import MovingLine from "./layouts/MovingLine";
+// import MovingLine from "./layouts/MovingLine";
+import ApiMethod from "./components/ApiMethod";
 // import Ball from "./components/Ball/Ball";
 // import Toast from "./layouts/Toast";
 // import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ const App = () => {
 
     //   <Toast display={showToast} content="Some text goes here" />
     // </div>
-    <MovingLine />
+    <ApiMethod />
   );
 };
 
